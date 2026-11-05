@@ -56,11 +56,11 @@ email-notification-app/
 
 | Member | Responsibility |
 |---|---|
-| Person 1 | Angular frontend and environment configuration |
-| Person 2 | API management and feature flags |
-| Person 3 | Node.js backend and email service integration |
-| Person 4 | Reusable HTML email templates |
-| Person 5 | Project coordination, GitHub management, integration testing and documentation |
+| Srinivasan | Angular frontend and environment configuration |
+| Vickna Sai Kumar | API management and feature flags |
+| Shreya | Node.js backend and email service integration |
+| Sabari | Reusable HTML email templates |
+| Khushi | Project coordination, GitHub management, integration testing and documentation |
 
 ## Getting Started
 
