@@ -1,0 +1,74 @@
+<!--
+  app.component.html — Root component template.
+
+  This file demonstrates how to use:
+  1. The HealthCheckComponent (<app-health-check>)
+  2. Feature flags from FeatureFlagService
+  3. Angular's async loading patterns (*ngIf)
+
+  Your team will expand this into a full navigation shell
+  with <router-outlet> as the application grows.
+-->
+<div class="app-shell">
+  <header class="app-header">
+    <h1>{{ title }}</h1>
+  </header>
+
+  <main class="app-main">
+
+    <!-- ===== Backend Status Section ===== -->
+    <section class="section">
+      <h2>Backend Connectivity</h2>
+      <!--
+        The <app-health-check> component is defined in SharedModule and
+        automatically calls GET /health when it loads.
+        It shows green/orange/red status with a Refresh button.
+      -->
+      <app-health-check></app-health-check>
+    </section>
+
+    <!-- ===== Feature Flags Section ===== -->
+    <section class="section">
+      <h2>Feature Flags</h2>
+
+      <!-- Show spinner while flags are loading -->
+      <p *ngIf="flagsLoading">Loading feature configuration...</p>
+
+      <!-- Show warning if flags couldn't be loaded from backend -->
+      <div *ngIf="flagsError" class="warning-banner">
+        ⚠️ {{ flagsError }}
+      </div>
+
+      <!-- Display flag values once loaded -->
+      <div *ngIf="featureFlags && !flagsLoading" class="flags-grid">
+        <div class="flag-card" [class.flag--enabled]="featureFlags.emailNotifications">
+          <span class="flag-name">Email Notifications</span>
+          <span class="flag-value">{{ featureFlags.emailNotifications ? '✅ Enabled' : '❌ Disabled' }}</span>
+        </div>
+        <div class="flag-card" [class.flag--enabled]="featureFlags.welcomeEmails">
+          <span class="flag-name">Welcome Emails</span>
+          <span class="flag-value">{{ featureFlags.welcomeEmails ? '✅ Enabled' : '❌ Disabled' }}</span>
+        </div>
+        <div class="flag-card" [class.flag--enabled]="featureFlags.verificationEmails">
+          <span class="flag-name">Verification Emails</span>
+          <span class="flag-value">{{ featureFlags.verificationEmails ? '✅ Enabled' : '❌ Disabled' }}</span>
+        </div>
+        <div class="flag-card" [class.flag--enabled]="featureFlags.promotionalEmails">
+          <span class="flag-name">Promotional Emails</span>
+          <span class="flag-value">{{ featureFlags.promotionalEmails ? '✅ Enabled' : '❌ Disabled' }}</span>
+        </div>
+      </div>
+
+      <!--
+        EXAMPLE: Conditionally showing a button based on a feature flag.
+        The *ngIf prevents the button from appearing when the flag is false.
+        NOTE: The backend ALSO checks this flag — the UI guard is for UX only.
+      -->
+      <div *ngIf="featureFlags?.promotionalEmails" class="promo-section">
+        <button class="btn btn-primary">Send Promotional Email</button>
+      </div>
+
+    </section>
+
+  </main>
+</div>

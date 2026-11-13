@@ -1,0 +1,52 @@
+<!--
+  health-check.component.html — Template for the HealthCheckComponent.
+
+  Uses Angular's *ngIf structural directive to show different content
+  depending on the current `status` property.
+
+  Status values:
+    'checking'  → Spinner shown while HTTP request is in-flight
+    'connected' → Green indicator with backend message
+    'error'     → Orange indicator with server error message
+    'offline'   → Red indicator when backend is unreachable
+-->
+<div class="health-check-container">
+  <h3 class="health-check-title">Backend Status</h3>
+
+  <!-- CHECKING: Show a simple loading state -->
+  <div *ngIf="status === 'checking'" class="status-badge status--checking">
+    <span class="status-dot"></span>
+    <span>Checking connection...</span>
+  </div>
+
+  <!-- CONNECTED: Backend responded with 200 OK -->
+  <div *ngIf="status === 'connected'" class="status-badge status--connected">
+    <span class="status-dot"></span>
+    <span>Connected</span>
+    <!-- Show the message field from the backend response if available -->
+    <span *ngIf="backendMessage" class="status-detail">— {{ backendMessage }}</span>
+  </div>
+
+  <!-- ERROR: Backend is reachable but returned an error response -->
+  <div *ngIf="status === 'error'" class="status-badge status--error">
+    <span class="status-dot"></span>
+    <span>Server Error</span>
+    <span class="status-detail">— {{ errorMessage }}</span>
+  </div>
+
+  <!-- OFFLINE: Could not reach the backend at all -->
+  <div *ngIf="status === 'offline'" class="status-badge status--offline">
+    <span class="status-dot"></span>
+    <span>Offline</span>
+    <span class="status-detail">— {{ errorMessage }}</span>
+  </div>
+
+  <!-- Refresh button — disabled while a check is in progress -->
+  <button
+    class="refresh-button"
+    (click)="checkHealth()"
+    [disabled]="isChecking"
+  >
+    {{ isChecking ? 'Checking...' : 'Refresh' }}
+  </button>
+</div>
