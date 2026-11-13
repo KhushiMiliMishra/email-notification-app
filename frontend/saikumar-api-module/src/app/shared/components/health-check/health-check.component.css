@@ -1,0 +1,87 @@
+/*
+ * health-check.component.css — Styles for the HealthCheckComponent.
+ *
+ * Colour coding:
+ *   Green  (#27ae60) = connected
+ *   Orange (#e67e22) = server error
+ *   Red    (#e74c3c) = offline
+ *   Grey   (#95a5a6) = checking
+ */
+
+.health-check-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.health-check-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #343a40;
+}
+
+/* --- Status badge (dot + text) --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-detail {
+  font-weight: 400;
+  color: #6c757d;
+}
+
+/* --- State colours --- */
+.status--checking .status-dot  { background-color: #95a5a6; animation: pulse 1.2s infinite; }
+.status--connected .status-dot { background-color: #27ae60; }
+.status--error .status-dot     { background-color: #e67e22; }
+.status--offline .status-dot   { background-color: #e74c3c; }
+
+.status--checking { color: #6c757d; }
+.status--connected { color: #27ae60; }
+.status--error     { color: #e67e22; }
+.status--offline   { color: #e74c3c; }
+
+/* Pulsing animation for the "checking" dot */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* --- Refresh button --- */
+.refresh-button {
+  padding: 4px 12px;
+  border: 1px solid #adb5bd;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #495057;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background-color: #e9ecef;
+}
+
+.refresh-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
