@@ -223,3 +223,4 @@ The backend provides a dynamic template interpolation engine in `src/services/em
    npm run test:email
    ```
    *Logs will display the generated Ethereal preview link to inspect the rendered HTML in a web browser.*
+

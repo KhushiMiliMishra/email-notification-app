@@ -7,3 +7,4 @@ router.use('/health', healthRoutes);
 router.use('/email', emailRoutes);
 
 module.exports = router;
+
