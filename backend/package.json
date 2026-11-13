@@ -1,0 +1,30 @@
+{
+  "name": "email-notification-backend",
+  "version": "1.0.0",
+  "description": "Node.js and Express backend with Nodemailer email service integration",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test:email": "node src/scripts/testEmail.js",
+    "test": "node src/scripts/testHealth.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "nodemailer",
+    "smtp",
+    "email-service"
+  ],
+  "author": "Shreya <rshreya@virtusa.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "nodemailer": "^10.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
